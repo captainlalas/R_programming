@@ -10,4 +10,17 @@ library(tidyverse)
 # View(txhousing)
 
 txhousing_2000 <- filter(txhousing, year >= 2000, year<2010)
-txhousing_2000
+View(txhousing_2000)
+# 1- working with Filter
+?filter
+diamonds_cut <- filter(diamonds, cut == "Premium")
+View(diamonds_cut)
+str(diamonds_cut)
+names(diamonds)
+glimpse(diamonds)
+
+# 2 select function (on rows)
+?select
+diam_al <- select(diamonds, starts_with('c'))
+diam_al <- select(diamonds, contains('c'))
+View(diam_al)
