@@ -25,8 +25,30 @@ diam_al <- select(diamonds, starts_with('c'))
 diam_al <- select(diamonds, contains('c'))
 View(diam_al)
 
-# working with pipe
-diam <- diamonds %>% 
-    select(-price) %>% 
+# working with the pipe operator
+diam_table_arrange <- diamonds %>% 
+    select(-(x : z)) %>% 
+    filter(carat>1) %>% 
+    mutate(mass_gram = 0.20 * carat) %>% 
+    arrange(desc(price), carat) %>% 
     View()
 
+# working with the pipe operator
+diam_table_arrange <- diamonds %>% 
+    select(-(x : z)) %>% 
+    filter(price>1000) %>% 
+    mutate(mass_gram = 0.20 * carat, price_pg = price/mass_gram, expensive = price > 10000) %>% 
+    arrange(desc(price), carat) %>% 
+    View()
+
+# Other verb to check with slice, rename, left_join, case_when
+?slice
+
+# Group by and summarize
+diamonds %>% 
+    group_by(cut, color) %>% 
+    summarise(avg_price = mean(price), sd_price =sd(price), count = n())
+
+diamonds %>% 
+    group_by(luxurious = price > 10000) %>% 
+    summarise(avg_price = mean(price), sd_price =sd(price), count = n())
