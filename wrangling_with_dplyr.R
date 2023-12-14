@@ -24,3 +24,9 @@ glimpse(diamonds)
 diam_al <- select(diamonds, starts_with('c'))
 diam_al <- select(diamonds, contains('c'))
 View(diam_al)
+
+# working with pipe
+diam <- diamonds %>% 
+    select(-price) %>% 
+    View()
+
